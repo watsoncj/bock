@@ -30,6 +30,12 @@ function calls in a simple text file to track what calls have been made.
 A call to "resetMocks" will delete the files, but this test framework currently
 leaves a ".bock" dropping in any folder it is run inside.
 
+OSX
+===
+Bock uses the GNU coreutils. For OSX support, install coreutils and follow the directions to setup your PATH.
+
+    brew install coreutils
+
 TODO
 ====
 Right now this library only spies. It needs to start mocking.
