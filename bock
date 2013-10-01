@@ -13,7 +13,7 @@ function verify {
     local numCalls=-1
     local callToCheck=""
     local callArgs=""
-    while true
+    while (( "$#" ))
     do
         local arg=$1
         shift
@@ -29,13 +29,14 @@ function verify {
     local fullCall="$callToCheck $callArgs"
 
     # remove spaces
-    fullCall=${fullCall%% *}
+    fullCallArray=($fullCall)
+    fullCall=${fullCallArray[@]}
 
     # Get spy data
-    eval local calls=$(cat $BOCK_BASEDIR/.bock/$callToCheck 2>/dev/null | wc -l)
-    eval local callMatches=$(
-        cat $BOCK_BASEDIR/.bock/$callToCheck 2>/dev/null |
-        grep "$fullCall" 2>/dev/null |
+    local spyFile="$BOCK_BASEDIR/.bock/$callToCheck"
+    local calls=$(cat $BOCK_BASEDIR/.bock/$callToCheck 2>/dev/null | wc -l)
+    local callMatches=$(
+        grep -Fx "$fullCall" "$spyFile" 2>/dev/null |
         wc -l)
 
     # Test Spy data
@@ -66,7 +67,7 @@ function resetMocks {
 
 BOCK_BASEDIR=$(pwd)
 mkdir -p $BOCK_BASEDIR/.bock
-rm $BOCK_BASEDIR/.bock/* 2>/dev/null
+rm -f $BOCK_BASEDIR/.bock/* 2>/dev/null
 shopt -s expand_aliases
 
 # Task alias all passed in functions to mockSpy
