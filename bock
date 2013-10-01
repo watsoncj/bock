@@ -61,7 +61,7 @@ function resetMocks {
     then
         FUNC='*'
     fi
-    rm $BOCK_BASEDIR/.bock/$FUNC
+    rm -f $BOCK_BASEDIR/.bock/$FUNC
 }
 
 BOCK_BASEDIR=$(pwd)

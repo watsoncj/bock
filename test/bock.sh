@@ -23,3 +23,7 @@ source ./bock mv
 
 verify mv && echo PASSED || echo FAILED
 
+echo -n "Testing handling of repeated calls to resetMock..."
+source ./bock thisCall
+resetMocks thisCall
+resetMocks thisCall && echo PASSED || echo FAILED
