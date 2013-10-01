@@ -1,5 +1,5 @@
 #!/bin/bash
-# BOCK - Back Mocking System
+# BOCK - Bash Mocking System
 # Programmer: Nick Wertzberger
 # Website: ideaheap.com
 # Bock works by storing metadata in the directory it runs in.
